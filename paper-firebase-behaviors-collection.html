@@ -1,0 +1,169 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<!-- <link rel="import" href="firebase.html"> -->
+<script>
+/** @polymerBehavior */
+
+Polymer.firebaseBehaviors = Polymer.firebaseBehaviors || {};
+
+Polymer.firebaseBehaviors.collection = {
+  properties: {
+    /**
+     * A Firebase API location that references an accessible document.
+     */
+    location: {
+      type: String,
+      notify: true,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Firebase Query object corresponding to `location`.
+     */
+    query: {
+      type: Object,
+      notify: true,
+      readOnly: true
+    },
+
+    /**
+     * If true, verbose debugging information will be printed to the console.
+     */
+    log: {
+      type: Boolean,
+      value: false,
+      reflectToAttribute: true
+    },
+    // /**
+    //  * An ordered array of data items produced by the current Firebase Query
+    //  * instance.
+    //  */
+    // data: {
+    //   type: Array,
+    //   readOnly: true,
+    //   notify: true,
+    //   value: function() {
+    //     return [];
+    //   }
+    // },
+
+    /**
+     * Specify a child key to order the set of records reflected on the
+     * client.
+     */
+    orderByChild: {
+      type: String,
+      value: null,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify to order by key the set of records reflected on the client.
+     */
+    orderByKey: {
+      type: Boolean,
+      value: false,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify to order by value the set of records reflected on the client.
+     */
+    orderByValue: {
+      type: Boolean,
+      value: false,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify to order by priority the set of records reflected on the
+     * client.
+     */
+    orderByPriority: {
+      type: Boolean,
+      value: false,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify a maximum number of records reflected on the client limited to
+     * the first certain number of children.
+     */
+    limitToFirst: {
+      type: Number,
+      value: null,
+      reflectToAttribute: true,
+    },
+
+    /**
+     * Specify a maximum number of records reflected on the client limited to
+     * the last certain number of children.
+     */
+    limitToLast: {
+      type: Number,
+      value: null,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify a start record for the set of records reflected in the
+     * collection.
+     */
+    startAt: {
+      type: String,
+      value: null,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify an end record for the set of records reflected in the
+     * collection.
+     */
+    endAt: {
+      type: String,
+      value: null,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify to create a query which includes children which match the
+     * specified value. The argument type depends on which orderBy*() function
+     * was used in this query. Specify a value that matches the orderBy*()
+     * type.
+     */
+    equalTo: {
+      type: String,
+      value: null,
+      reflectToAttribute: true
+    },
+
+    /**
+     * Specify to override the type used when deserializing the value of
+     * `start-at`, `end-at` and `equal-to` attributes. By default, these
+     * values are always deserialized as `String`, but sometimes it is
+     * preferrable to deserialize these values as e.g., `Number`.
+     *
+     * Accepted values for this attribute, and their corresponding
+     * deserialization types, are as follows:
+     *
+     *  - `string` => `String` (default)
+     *  - `number` => `Number`
+     *  - `boolean` => `Boolean`
+     */
+    orderValueType: {
+      type: String,
+      value: 'string',
+      reflectToAttribute: true
+    }
+  }
+
+};
+</script>

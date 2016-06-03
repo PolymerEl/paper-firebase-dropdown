@@ -1,0 +1,35 @@
+{
+  "name": "paper-firebase-dropdown",
+  "version": "1.0.0",
+  "authors": [
+    "christophe.geiser@e-smile.org"
+  ],
+  "description": "dropdown control for firebase collection",
+  "keywords": [
+    "web-component",
+    "dropdown",
+    "material design",
+    "polymer",
+    "firebase",
+    "seed"
+  ],
+  "main": "paper-firebase-dropdown.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/PolymerEl/paper-firebase-dropdown/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "firebase-element": "^1.0.12",
+    "paper-dropdown-menu": "^1.2.1",
+    "paper-menu": "^1.2.2",
+    "paper-item": "^1.2.1"
+
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}

@@ -1,0 +1,154 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="paper-firebase-behaviors-collection.html">
+<link rel="import" href="paper-firebase-behaviors-dropdown.html">
+<link rel="import" href="../firebase-element/firebase-collection.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<!--
+A paper-menu-dropdown using firebase-collection items as menu options
+
+Example:
+
+    <paper-firebase-dropdown></paper-firebase-dropdown>
+
+Example:
+
+   <paper-firebase-dropdown  label="choose Division" value="{{value}}" label-accessor="label" log location="https://pre-ignition-meta.firebaseio.com/countries/BGD/ADM1">
+  </paper-firebase-dropdown>
+
+@demo demo/index.html
+
+-->
+<dom-module id="paper-firebase-dropdown">
+  <template>
+    <style>
+    :host {
+      display: block;
+      /*box-sizing: border-box;*/
+    }
+    #filterCt {
+      color: var(--default-primary-color);
+      padding: 2px 8;
+    }
+    </style>
+    <firebase-collection
+        location="[[location]]"
+        log="[[log]]"
+        order-by-child="[[orderByChild]]"
+        order-by-key="[[orderByKey]]"
+        order-by-value="[[orderByValue]]"
+        order-by-priority="[[orderByPriority]]"
+        limit-to-first="[[limitToFirst]]"
+        limit-to-last="[[limitToLast]]"
+        start-at="[[startAt]]"
+        end-at="[[endAt]]"
+        equal-to="[[equalTo]]"
+        order-value-type="[[orderValueType]]"
+        query="{{query}}"
+        data="{{items}}"
+    ></firebase-collection>
+    <paper-dropdown-menu
+        value__="[[selectedValue]]"
+        label="[[label]]"
+        placeholder="[[placeholder]]"
+        error-message="[[errorMessage]]"
+        opened="[[opened]]"
+        no-label-float="[[noLabelFloat]]"
+        always-float-label="[[alwaysFloatLabel]]"
+        no-animations="[[noAnimations]]"
+        horizontal-align="[[horizontalAlign]]"
+        vertical-align="[[verticalAlign]]"
+    >
+       <paper-menu class="dropdown-content" selected="{{value}}" attr-for-selected="name" >
+        <template is="dom-repeat" id="dropdownRepeat" items="{{items}}" filter="{{filter}}">
+          <paper-item name="{{_computeItemValue(item)}}">[[_computeItemLabel(item)]]</paper-item>
+        </template>
+      </paper-menu>
+    </paper-dropdown-menu>
+  </template>
+  <script>
+  Polymer({
+    is: 'paper-firebase-dropdown',
+
+    properties: {
+      /**
+       * An ordered array of data items produced by the current Firebase Query
+       * instance.
+       */
+      items: {
+        type: Array,
+        notify: true,
+      },
+
+      /**
+       * `value` for this element. It is derived from passing collection item to _computeItemValue function
+       */
+      value: {
+        type: String,
+        notify: true
+      },
+      
+      /**
+       * `keyAccessorFn`, provide a new function to retrieve item key. 
+       * example : function(item) {return item.__myNewKey__;}
+       */
+      keyAccessorFn: {
+        type: Function,
+        observer: '_keyAccessorFnChanged',
+        value: function() {
+          return function(item) {return item.__firebaseKey__;};
+        }
+      },
+
+      /**
+       * `labelAccessorFn` key for retrieving the `label` from item data object
+       */
+      labelAccessorFn: {
+        type: Function,
+        observer: '_labelAccessorFnChanged',
+        value: function() {
+          return function(item) {return item.label;};
+        }
+      },
+
+      /**
+       * `filter` function passed to `<template is="dom-repeat">`
+       */
+      filter: Function 
+    
+    },
+    
+    behaviors: [
+      Polymer.firebaseBehaviors.collection,
+      Polymer.firebaseBehaviors.dropdown
+    ],
+
+    _keyAccessorFnChanged: function(fn) {
+      var dataHost = this;
+      this._computeItemValue = fn && (typeof fn === 'function' ? fn :
+        function() { return dataHost[fn].apply(dataHost, arguments); });
+      this.$.dropdownRepeat._debounceTemplate(this.$.dropdownRepeat._render);
+      
+    },
+    
+    _labelAccessorFnChanged: function(fn) {
+      var dataHost = this;
+      this._computeItemLabel = fn && (typeof fn === 'function' ? fn :
+        function() { return dataHost[fn].apply(dataHost, arguments); });
+      this.$.dropdownRepeat._debounceTemplate(this.$.dropdownRepeat._render);
+      
+    },
+
+  });
+  </script>
+</dom-module>
