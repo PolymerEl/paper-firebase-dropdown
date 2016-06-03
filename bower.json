@@ -1,6 +1,6 @@
 {
   "name": "paper-firebase-dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "christophe.geiser@e-smile.org"
   ],
@@ -9,7 +9,7 @@
     "web-component",
     "web-components",
     "dropdown",
-    "paper-dropdown",
+    "paper-dropdown-menu",
     "material design",
     "polymer",
     "firebase",
@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
-    "firebase-element": "^1.0.12",
+    "firebase-element": "GoogleWebComponents/firebase-element#^1.0.12",
     "paper-dropdown-menu": "^1.2.1",
     "paper-menu": "^1.2.2",
     "paper-item": "^1.2.1"
