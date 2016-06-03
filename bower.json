@@ -7,7 +7,9 @@
   "description": "dropdown control for firebase collection",
   "keywords": [
     "web-component",
+    "web-components",
     "dropdown",
+    "paper-dropdown",
     "material design",
     "polymer",
     "firebase",
