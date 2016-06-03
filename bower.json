@@ -28,8 +28,7 @@
     "paper-dropdown-menu": "^1.2.1",
     "paper-menu": "^1.2.2",
     "paper-item": "^1.2.1",
-    "iron-demo-helpers": "^1.0.0",
-
+    "iron-demo-helpers": "^1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
