@@ -60,6 +60,7 @@ Example:
     <paper-dropdown-menu
         value__="[[selectedValue]]"
         label="[[label]]"
+        readonly="[[readonly]]"
         placeholder="[[placeholder]]"
         error-message="[[errorMessage]]"
         opened="[[opened]]"
@@ -124,7 +125,9 @@ Example:
       /**
        * `filter` function passed to `<template is="dom-repeat">`
        */
-      filter: Function 
+      filter: Function ,
+
+      readonly: Boolean
     
     },
     

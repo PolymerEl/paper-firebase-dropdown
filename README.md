@@ -14,3 +14,6 @@ Example:
   </paper-firebase-dropdown>
 
 
+<div>
+	<img src="https://raw.githubusercontent.com/PolymerEl/paper-firebase-dropdown/master/images/paper-firebase-dropdown.png" width="600"></img>
+</div>
