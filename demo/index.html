@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../paper-firebase-dropdown.html">
+  <link rel="import" href="../paper-firebase-radio-group.html">
 </head>
 
 <body unresolved>
@@ -31,6 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-firebase-dropdown>
           <paper-firebase-dropdown order-by-key start-at="{{value}}" end-at="{{value}}" id="dDistrict" label="choose District" label-accessor="label" log location="https://pre-ignition-meta.firebaseio.com/countries/BGD/ADM2">
           </paper-firebase-dropdown>
+          <paper-firebase-radio-group id="dDivision" label="choose Division" value="{{value}}" label-accessor="label" log location="https://pre-ignition-meta.firebaseio.com/countries/BGD/ADM1">
+          </paper-firebase-radio-group>
         </template>
       </template>
     </demo-snippet>

@@ -1,6 +1,6 @@
 {
   "name": "paper-firebase-dropdown",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "authors": [
     "christophe.geiser@e-smile.org"
   ],
@@ -25,10 +25,13 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
     "firebase-element": "GoogleWebComponents/firebase-element#^1.0.12",
-    "paper-dropdown-menu": "^1.2.1",
-    "paper-menu": "^1.2.2",
-    "paper-item": "^1.2.1",
-    "iron-demo-helpers": "^1.0.0"
+    "paper-input-wrapper": "polymerEl/paper-input-wrapper#^0.1.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.3.2",
+    "paper-radio-group": "PolymerElements/paper-radio-group#^1.2.0",
+    "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.1",
+    "paper-menu": "PolymerElements/paper-menus#^1.2.2",
+    "paper-item": "PolymerElements/paper-item#^1.2.1",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

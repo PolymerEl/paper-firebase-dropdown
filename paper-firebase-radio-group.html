@@ -11,25 +11,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="paper-firebase-collection-behaviors.html">
 <link rel="import" href="paper-firebase-dropdown-behaviors.html">
 <link rel="import" href="../firebase-element/firebase-collection.html">
-<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../paper-menu/paper-menu.html">
-<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../paper-input-wrapper/paper-input-wrapper.html">
 <!--
 A paper-menu-dropdown using firebase-collection items as menu options
 
 Example:
 
-    <paper-firebase-dropdown></paper-firebase-dropdown>
+    <paper-firebase-radio-group></paper-firebase-radio-group>
 
 Example:
 
-   <paper-firebase-dropdown  label="choose Division" value="{{value}}" label-accessor="label" log location="https://pre-ignition-meta.firebaseio.com/countries/BGD/ADM1">
-  </paper-firebase-dropdown>
+   <paper-firebase-radio-group  label="choose Division" value="{{value}}" label-accessor="label" log location="https://pre-ignition-meta.firebaseio.com/countries/BGD/ADM1">
+  </paper-firebase-radio-group>
 
 @demo demo/index.html
 
 -->
-<dom-module id="paper-firebase-dropdown">
+<dom-module id="paper-firebase-radio-group">
   <template>
     <style>
     :host {
@@ -57,29 +57,32 @@ Example:
         query="{{query}}"
         data="{{items}}"
     ></firebase-collection>
-    <paper-dropdown-menu
-        value__="[[selectedValue]]"
+    <paper-input-wrapper
         label="[[label]]"
-        readonly="[[readonly]]"
-        placeholder="[[placeholder]]"
         error-message="[[errorMessage]]"
-        opened="[[opened]]"
+        placeholder="[[placeholder]]"
         no-label-float="[[noLabelFloat]]"
         always-float-label="[[alwaysFloatLabel]]"
+        >
+    <paper-radio-group
+        value__="[[selectedValue]]"
+        readonly="[[readonly]]"
         no-animations="[[noAnimations]]"
         horizontal-align="[[horizontalAlign]]"
         vertical-align="[[verticalAlign]]"
+        selected="{{value}}" 
+        attr-for-selected="name"
     >
-       <paper-menu class="dropdown-content" selected="{{value}}" attr-for-selected="name" >
+       
         <template is="dom-repeat" id="dropdownRepeat" items="{{items}}" filter="{{filter}}">
-          <paper-item name="{{_computeItemValue(item)}}">[[_computeItemLabel(item)]]</paper-item>
+          <paper-radio-button name="{{_computeItemValue(item)}}">[[_computeItemLabel(item)]]</paper-radio-button>
         </template>
-      </paper-menu>
-    </paper-dropdown-menu>
+    </paper-radio-group>
+    </paper-input-wrapper>
   </template>
   <script>
   Polymer({
-    is: 'paper-firebase-dropdown',
+    is: 'paper-firebase-radio-group',
 
     properties: {
       /**
